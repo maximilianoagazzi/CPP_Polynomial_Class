@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 #include "../include/Polynomial.hpp"
 
 //PolTerm
@@ -147,6 +148,15 @@ Polynomial::Polynomial() : degree(0), Amount_missing_terms(0) {
 }
 
 Polynomial::Polynomial(const Polynomial& p) : degree(p.degree), Amount_missing_terms(p.Amount_missing_terms), Poly(p.Poly) {}
+
+float Polynomial::evaluation(float x) const {
+    float result = 0.0;
+
+    for(std::size_t i=0; i<Poly.size(); i++)
+        result += Poly[i].GetCoef() * std::pow(x, Poly[i].GetExp());
+
+    return result;
+}
 
 void Polynomial::correct_grade() {
     if (!Poly.empty()) {

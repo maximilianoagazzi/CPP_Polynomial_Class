@@ -108,6 +108,8 @@ class Polynomial {
         Polynomial();
         Polynomial(const Polynomial& p);
 
+        float evaluation(float x) const;
+
         //Setters of polynomials
         void SetPolyTerms();
         void SetPolyTerms(int d);
