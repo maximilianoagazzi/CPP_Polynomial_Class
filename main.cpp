@@ -4,9 +4,9 @@
 int main() {
     Polynomial p1, p2;
 
-    p1.SetPolyTerms({5, 6, 8, 10}, {6, 3, 7, 1});
+    p1.AddPolyTerms({5, 6, 8, 10}, {6, 3, 7, 1});
     std::cout << p1 << std::endl;
-    p2.SetPolyTerms({7, 3, 11}, {3, 5, 0});
+    p2.AddPolyTerms({7, 3, 11}, {3, 5, 0});
     std::cout << p2 << std::endl;
     
     std::cout << "El grado de p1 es: " << p1.GetDegree() << std::endl;

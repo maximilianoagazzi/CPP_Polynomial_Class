@@ -149,15 +149,6 @@ Polynomial::Polynomial() : degree(0), Amount_missing_terms(0) {
 
 Polynomial::Polynomial(const Polynomial& p) : degree(p.degree), Amount_missing_terms(p.Amount_missing_terms), Poly(p.Poly) {}
 
-float Polynomial::evaluation(float x) const {
-    float result = 0.0;
-
-    for(std::size_t i=0; i<Poly.size(); i++)
-        result += Poly[i].GetCoef() * std::pow(x, Poly[i].GetExp());
-
-    return result;
-}
-
 void Polynomial::correct_grade() {
     if (!Poly.empty()) {
         degree = Poly[0].GetExp();
@@ -198,7 +189,7 @@ void Polynomial::complete_polynomial() {
     Amount_missing_terms = 0;
 }
 
-void Polynomial::SetPolyTerms() {  //Set the polynomial by adding terms as many as the user wants
+void Polynomial::AddPolyTerms() {  //Set the polynomial by adding terms as many as the user wants
     std::cout << "Enter a coefficient first, then its exponent separated by (^, |, _, :, or ;)" << std::endl;
     char ccontinue = 's';
 
@@ -218,7 +209,7 @@ void Polynomial::SetPolyTerms() {  //Set the polynomial by adding terms as many 
     correct_grade();
 }
 
-void Polynomial::SetPolyTerms(int d) {  //Set the polynomial by adding terms as many as the user wants but predefining the degree
+void Polynomial::AddPolyTerms(int d) {  //Set the polynomial by adding terms as many as the user wants but predefining the degree
     if(d < 0) throw std::invalid_argument("Degree cannot be negative.");
     degree = d;
     Poly.clear();
@@ -251,7 +242,7 @@ void Polynomial::SetPolyTerms(int d) {  //Set the polynomial by adding terms as 
     Amount_missing_terms = degree - Poly.size() + 1;
 }
 
-void Polynomial::SetPolyTerms(const std::vector<float>& C, const std::vector<int>& E) {
+void Polynomial::AddPolyTerms(const std::vector<float>& C, const std::vector<int>& E) {
     if(C.size() != E.size()) throw std::invalid_argument("Coefficient vector and exponent vector must have the same size");
 
     Poly.clear();
@@ -266,6 +257,10 @@ void Polynomial::SetPolyTerms(const std::vector<float>& C, const std::vector<int
 
 int Polynomial::GetDegree() const {
     return degree;
+}
+
+int Polynomial::GetAmountTerms() const {
+    return Poly.size();
 }
 
 bool Polynomial::Is_complete() const {
@@ -285,6 +280,19 @@ float Polynomial::operator[](int Exp) const {
     if(finded != -1) result = Poly[finded].GetCoef();
 
     return result;
+}
+
+double Polynomial::operator()(float x) const {
+    double result = 0.0;
+
+    for(std::size_t i=0; i<Poly.size(); i++)
+        result += Poly[i].GetCoef() * std::pow(x, Poly[i].GetExp());
+
+    return result;
+}
+
+Polynomial::operator double() const {
+    return (*this)(1.0);
 }
 
 Polynomial& Polynomial::operator=(const Polynomial& p) {
@@ -494,8 +502,6 @@ std::ostream& operator<<(std::ostream& os, const Polynomial& p) {
             os << " + " << p.Poly[i];
         }
     }
-
-    os << std::endl;
 
     return os;
 }

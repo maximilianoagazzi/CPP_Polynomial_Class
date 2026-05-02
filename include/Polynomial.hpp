@@ -108,19 +108,24 @@ class Polynomial {
         Polynomial();
         Polynomial(const Polynomial& p);
 
-        float evaluation(float x) const;
-
         //Setters of polynomials
-        void SetPolyTerms();
-        void SetPolyTerms(int d);
-        void SetPolyTerms(const std::vector<float>& C, const std::vector<int>& Exp);
+        void AddPolyTerms();
+        void AddPolyTerms(int d);
+        void AddPolyTerms(const std::vector<float>& C, const std::vector<int>& Exp);
 
         //Getters
         int GetDegree() const;
+        int GetAmountTerms() const;
         bool Is_complete() const;
 
         //indexing operator (only to see the coefficient)
         float operator[](int Exp) const;
+
+        //Function call operator (to evaluate the polynomial at a given x)
+        double operator()(float x) const;
+
+        //Conversion operator (evaluates the polynomial at x = 1)
+        explicit operator double() const;
 
         //Equalizations operators
         Polynomial& operator=(const Polynomial& p);
