@@ -144,6 +144,8 @@ Polynomial::Polynomial() : degree(0), Amount_missing_terms(0) {
     Poly.push_back(PolyTerm(0, 0));  //Make the null polynomial
 }
 
+Polynomial::Polynomial(const Polynomial& p) : degree(p.degree), Amount_missing_terms(p.Amount_missing_terms), Poly(p.Poly) {}
+
 void Polynomial::correct_grade() {
     if (!Poly.empty()) {
         degree = Poly[0].GetExp();

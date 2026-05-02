@@ -105,6 +105,7 @@ class Polynomial {
         Polynomial& Division_algorithm(const Polynomial& p, Polynomial& c);
     public:
         Polynomial();
+        Polynomial(const Polynomial& p);
 
         //Setters of polynomials
         void SetPolyTerms();
