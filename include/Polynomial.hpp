@@ -12,6 +12,7 @@ class Polynomial {
             public:
                 //Builder
                 PolyTerm(float Coef = 0.0, int Exp = 0);
+                PolyTerm(const PolyTerm& p);
 
                 //Getters
                 float GetCoef() const;

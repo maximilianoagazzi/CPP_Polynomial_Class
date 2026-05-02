@@ -8,6 +8,8 @@ Polynomial::PolyTerm::PolyTerm(float C, int E) : Coef(C), Exp(E) {
     if(E < 0) throw std::invalid_argument("Exponent cannot be negative.");
 }
 
+Polynomial::PolyTerm::PolyTerm(const PolyTerm& p) : Coef(p.Coef), Exp(p.Exp) {}
+
 float Polynomial::PolyTerm::GetCoef() const {
     return Coef;
 }
