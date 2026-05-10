@@ -1,8 +1,8 @@
 #include <iostream>
-#include "include/Polynomial.hpp"
+#include "include/CPolynomial.hpp"
 
 int main() {
-    Polynomial p1, p2;
+    CPolynomial p1, p2;
 
     p1.AddPolyTerms({5, 6, 8, 10}, {6, 3, 7, 1});
     std::cout << p1 << std::endl;
